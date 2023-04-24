@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly_express as px
+from matplotlib import pyplot as plt
 
 # ---- Jupyter Notebooks ----
 
@@ -25,7 +26,7 @@ df = df.drop_duplicates()
 # ---- Streamlit Material ----
 
 # title at top of tab
-st.set_page_config(page_title="Data Science Salaries", layout='wide')
+#st.set_page_config(page_title="Data Science Salaries", layout='wide')
 
 # ---- Header ----
 
@@ -38,6 +39,10 @@ st.dataframe(df)
 
 
 # stationary histogram
+
+df.hist(column='remote_ratio', bins=30)
+
+plt.show() 
 
 st.write(" Remote Ratio /nLess than 200 of the observed surveyors work hybrid positions of 50% remote-work.  Just slightly more of the data scientist field workers work fully remote jobs.  And the other majority workers, work fully in office/ on site. /n Salary description/n Below you can toggle to get a description of expected salary for experience-level.")
 #plt.show() 
@@ -64,6 +69,7 @@ figure.update_layout(title="<b> Split of payment by {}</b>".format(choice_for_hi
 #embed for streamlit
 st.plotly_chart(figure)
 figure.show()
+
 
 # scatter plot 
 
