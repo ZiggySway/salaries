@@ -80,13 +80,13 @@ st.plotly_chart(figure2)
 figure2.show()
 
 st.write( """
-#### This project shows the historical collected data of salary and details of data scientist worker.  This helps users to understand their potential salaries if they are to work in the field.  <br>
+#### This project shows the historical collected data of salary and details of data scientist worker.  This helps users to understand their potential salaries if they are to work in the field.  
 
-Remote-ratio chart shows the amount of workers working fully remote, vs half-time remote and full office workers.<br>
-
-
-The salary histogram, shows salary based on level of work experience.  It has toggle information to allow the user to interact with the chart.  To see specifically the levels separate and together.<br>
+Remote-ratio chart shows the amount of workers working fully remote, vs half-time remote and full office workers.
 
 
-Salary (remote-level); the scatter plot shows a scatter of salaries, and the hover content shows whether that salary is from a full-time/ FT, part-time/ PT, freelance/ FL, or contract/ CT.<br>
+The salary histogram, shows salary based on level of work experience.  It has toggle information to allow the user to interact with the chart.  To see specifically the levels separate and together.
+
+
+Salary (remote-level); the scatter plot shows a scatter of salaries, and the hover content shows whether that salary is from a full-time/ FT, part-time/ PT, freelance/ FL, or contract/ CT.
 """)
