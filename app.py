@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly_express as px
-from matplotlib import pyplot as plt
+
 
 # ---- Jupyter Notebooks ----
 
@@ -36,16 +36,6 @@ with st.container():
     st.write("This website shows that Data Scientists at all levels can make a difference, and make a good living!")
 
 st.dataframe(df)
-
-
-# stationary histogram
-
-df.hist(column='remote_ratio', bins=30)
-
-plt.show() 
-
-st.write(" Remote Ratio /nLess than 200 of the observed surveyors work hybrid positions of 50% remote-work.  Just slightly more of the data scientist field workers work fully remote jobs.  And the other majority workers, work fully in office/ on site. /n Salary description/n Below you can toggle to get a description of expected salary for experience-level.")
-#plt.show() 
 
 
 
