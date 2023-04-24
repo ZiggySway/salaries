@@ -5,16 +5,21 @@ import plotly_express as px
 # ---- Jupyter Notebooks ----
 
 
+
+
 df = pd.read_csv('ds_salaries.csv')
 
-# Taking out what's unnecessary
+# Clean data
 df.drop(df[['salary','salary_currency']], axis = 1, inplace = True)
 
-# Converted the experience levels instead of being abreviations to the full title of what they are.
+
 df['experience_level'] = df['experience_level'].replace('EN','Entry_junior')
 df['experience_level'] = df['experience_level'].replace('MI','Mid-level')
 df['experience_level'] = df['experience_level'].replace('SE','Senior')
 df['experience_level'] = df['experience_level'].replace('Ex','Executive')
+
+df.duplicated().sum()
+df = df.drop_duplicates()
 
 
 # ---- Streamlit Material ----
@@ -32,40 +37,60 @@ with st.container():
 st.dataframe(df)
 
 
-# will create histogram based on: experience level and salary
+# stationary histogram
+
+st.write(" Remote Ratio /nLess than 200 of the observed surveyors work hybrid positions of 50% remote-work.  Just slightly more of the data scientist field workers work fully remote jobs.  And the other majority workers, work fully in office/ on site. /n Salary description/n Below you can toggle to get a description of expected salary for experience-level.")
+#plt.show() 
+
+
+
+
+#will create histogram based on: experience level and salary
 
 list_for_hist = ['experience_level', 'salary_in_usd']
 
-# create select box- interactive
+#create select box- interactive
 choice_for_hist = st.selectbox('Choose experience level', list_for_hist)
 
-# plotly histogram, where price is determined by choice in box
-hist1 = px.histogram(df, x= 'salary_in_usd', color='experience_level', color_discrete_map={'Entry-level':'green',
-                                                                                          'Mid-level':'red',
-                                                                                          'Senior-level':'black', 
-                                                                                          'Executive-level':'yellow'})
+#plotly histogram, where price is determined by choice in box
+figure = px.histogram(df, x= 'salary_in_usd', color='experience_level', color_discrete_map={'Entry_Junior':'red', 
+                                                                                          'Mid_level':'green', 
+                                                                                          'Senior':'black', 
+                                                                                          'Executive':'yellow'})
 
 #add title
-hist1.update_layout(title="<b> Salary of level by {}</b>".format(choice_for_hist))
+figure.update_layout(title="<b> Split of payment by {}</b>".format(choice_for_hist))
 
 #embed for streamlit
-st.plotly_chart(hist1)
+st.plotly_chart(figure)
+figure.show()
 
 # scatter plot 
 
 st.write( """
-#### Now let's find out the percentage of Remote work, 
-based on experience level and work-time status.
+#### Now let's find out the level/ percentage of Remote work, 
+based on experience level and work-time status
 """)
 
 #Remote work- based on experience level and full-time, part-time, contractor, or freelance work
-list_for_scatter = ['salary_in_usd', 'remote_ratio','experience_level']
-choice_for_scatter = st.selectbox('Remote work dependency', list_for_scatter)
-scat1 = px.scatter(df, x='remote_ratio', y=choice_for_scatter, hover_data=['experience_level'])
+#ist_for_scatter = ['salary_in_usd']
+#choice_for_scatter = st.selectbox('Remote work dependency', list_for_scatter)
+figure2 = px.scatter(df, x='salary_in_usd', hover_data=['employment_type'])
 
-scat1.update_layout(
-title="<br> Remote vs {}</b>".format(choice_for_scatter))
-st.plotly_chart(scat1)
+figure2.update_layout(
+title="<br> Salary depiction: {}</b>")
+st.plotly_chart(figure2)
+
+figure2.show()
+
+st.write( """
+#### This project shows the historical collected data of salary and details of data scientist worker.  This helps users to understand their potential salaries if they are to work in the field.  <br>
+
+Remote-ratio chart shows the amount of workers working fully remote, vs half-time remote and full office workers.<br>
 
 
+The salary histogram, shows salary based on level of work experience.  It has toggle information to allow the user to interact with the chart.  To see specifically the levels separate and together.<br>
 
+
+Salary (remote-level); the scatter plot shows a scatter of salaries, and the hover content shows whether that salary is from a full-time/ FT, part-time/ PT, freelance/ FL, or contract/ CT.<br>
+""")
