@@ -83,18 +83,9 @@ def function(df):
 
     figure2 = px.scatter(df, x=x_label, y=y_label)
 
-    figure2.update_layout(
-    title="<br> Salary depiction</b>")
+    figure2.update_layout(title="<br> Salary depiction</b>")
     st.plotly_chart(figure2)
 
-#hover_data=['employment_type']
-
-    
-#figure2.update_layout(
-title=("<br> Salary depiction for company size </b>")
-#st.plotly_chart(figure2)
-
-figure2.show()
 
 st.write("""
 ###This project shows the historical collected data of salary and details of data scientist worker.  
