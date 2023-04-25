@@ -42,7 +42,7 @@ st.dataframe(df)
 
 #will create histogram based on: experience level and salary
 
-list_for_hist = ['experience_level', 'salary_in_usd']
+list_for_hist = ['Entry_Junior', 'Mid_level', 'Senior', 'Executive']
 
 #create select box- interactive
 choice_for_hist = st.selectbox('Choose experience level', list_for_hist)
