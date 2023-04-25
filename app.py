@@ -87,13 +87,27 @@ def function(df):
     figure2.update_layout(title="<br> Salary depiction</b>")
     st.plotly_chart(figure2)
 """""
+
+"""""
+one_value_company_size = df['company_size'] == "M"
+two_value_company_size = df['company_size'] == "M"
+
 x_label = st.selectbox('Choose X-Axis Value', options=df['employee_residence'])
 y_label = st.selectbox('Choose Y-Axis Value', options=df['company_size'])
 figure2 = px.scatter(df['salary_in_usd'], x='salary_in_usd', y=y_label)
+"""
+option = st.selectbox(
+    'Choose company size : (S)Small, (M)Medium, (L)Large',
+    ('S', 'M', 'L'))
+
+st.write(figure2, option)
+
 
 figure2.update_layout(
 title="<br> Salary depiction based on factors</b>")
 st.plotly_chart(figure2)
+
+
 
 
 st.write("""
