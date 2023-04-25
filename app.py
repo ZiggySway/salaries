@@ -75,7 +75,8 @@ based on experience level and work-time status
 #choice_for_scatter = st.selectbox('Remote work dependency', list_for_scatter)
 
 
-figure2 = px.scatter(df, x='salary_in_usd')
+figure2 = []
+#px.scatter(df, x='salary_in_usd')
 
 def function(df):
     x_label = st.selectbox('Choose X-Axis Value', options=df['salary_in_usd'])
@@ -90,20 +91,13 @@ def function(df):
 #hover_data=['employment_type']
 
     
-figure2.update_layout(
-title="<br> Salary depiction: {figure2}</b>")
-st.plotly_chart(figure2)
+#figure2.update_layout(
+title=("<br> Salary depiction for company size </b>")
+#st.plotly_chart(figure2)
 
-figure2.show()
+#figure2.show()
 
-st.write( """
-#### This project shows the historical collected data of salary and details of data scientist worker.  This helps users to understand their potential salaries if they are to work in the field.  
-
-Remote-ratio chart shows the amount of workers working fully remote, vs half-time remote and full office workers.
-
-
-The salary histogram, shows salary based on level of work experience.  It has toggle information to allow the user to interact with the chart.  To see specifically the levels separate and together.
-
-
-Salary (remote-level); the scatter plot shows a scatter of salaries, and the hover content shows whether that salary is from a full-time/ FT, part-time/ PT, freelance/ FL, or contract/ CT.
+st.write("""
+####This project shows the historical collected data of salary and details of data scientist worker.  
+This helps users to understand their potential salaries if they are to work in the field.  
 """)
