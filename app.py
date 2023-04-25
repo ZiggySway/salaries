@@ -45,7 +45,9 @@ st.dataframe(df)
 list_for_hist = ['Entry_Junior', 'Mid_level', 'Senior', 'Executive']
 
 #create select box- interactive
-choice_for_hist = st.selectbox('Choose experience level', list_for_hist)
+#choice_for_hist = st.selectbox('Choose experience level', list_for_hist)
+
+st.write("Click on the experience level boxes in the legend, to turn off/on the experience levels for salaries.")
 
 #plotly histogram, where price is determined by choice in box
 figure = px.histogram(df, x= 'salary_in_usd', color='experience_level', color_discrete_map={'Entry_Junior':'red', 
