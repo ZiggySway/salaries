@@ -66,8 +66,7 @@ figure.show()
 # scatter plot 
 
 st.write( """
-#### Now let's find out the level/ percentage of Remote work, 
-based on experience level and work-time status
+#### Now let's find out Salary in comparison to company size, based on experience level and work-time status
 """)
 
 #Remote work- based on experience level and full-time, part-time, contractor, or freelance work
@@ -95,9 +94,9 @@ def function(df):
 title=("<br> Salary depiction for company size </b>")
 #st.plotly_chart(figure2)
 
-#figure2.show()
+figure2.show()
 
 st.write("""
-####This project shows the historical collected data of salary and details of data scientist worker.  
+###This project shows the historical collected data of salary and details of data scientist worker.  
 This helps users to understand their potential salaries if they are to work in the field.  
 """)
