@@ -69,36 +69,19 @@ st.write( """
 #### Now let's find out Salary in comparison to company size, based on experience level and work-time status
 """)
 
-#Remote work- based on experience level and full-time, part-time, contractor, or freelance work
-#list_for_scatter = ['salary_in_usd']
-#choice_for_scatter = st.selectbox('Remote work dependency', list_for_scatter)
 
-
-figure2 = []
-#px.scatter(df, x='salary_in_usd')
-
-"""""
-def function(df):
-    x_label = st.selectbox('Choose X-Axis Value', options=df['salary_in_usd'])
-    y_label = st.selectbox('Choose Y-Axis Value', options=df['company_size'])
-
-    figure2 = px.scatter(df, x=x_label, y=y_label)
-
-    figure2.update_layout(title="<br> Salary depiction</b>")
-    st.plotly_chart(figure2)
-"""""
-
-"""""
-one_value_company_size = df['company_size'] == "M"
-two_value_company_size = df['company_size'] == "M"
-
-x_label = st.selectbox('Choose X-Axis Value', options=df['employee_residence'])
-y_label = st.selectbox('Choose Y-Axis Value', options=df['company_size'])
-figure2 = px.scatter(df['salary_in_usd'], x='salary_in_usd', y=y_label)
-"""
 option = st.selectbox(
     'Choose company size : (S)Small, (M)Medium, (L)Large',
     ('S', 'M', 'L'))
+
+figure2 = px.scatter(df['salary_in_usd'], x='company_size',y='salary_in_usd')
+
+figure2.update_layout(
+title="<br> Salary depiction: {}</b>")
+st.plotly_chart(figure2)
+
+
+
 
 st.write(figure2, option)
 
