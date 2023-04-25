@@ -47,7 +47,7 @@ list_for_hist = ['Entry_Junior', 'Mid_level', 'Senior', 'Executive']
 #create select box- interactive
 #choice_for_hist = st.selectbox('Choose experience level', list_for_hist)
 
-st.write("Click on the experience level boxes in the legend, to turn off/on the experience levels for salaries.")
+st.write("### Click on the experience level boxes in the legend, to turn off/on the experience levels for salaries. ###")
 
 #plotly histogram, where price is determined by choice in box
 figure = px.histogram(df, x= 'salary_in_usd', color='experience_level', color_discrete_map={'Entry_Junior':'red', 
@@ -56,7 +56,7 @@ figure = px.histogram(df, x= 'salary_in_usd', color='experience_level', color_di
                                                                                           'Executive':'yellow'})
 
 #add title
-figure.update_layout(title="<b> Split of payment by {}</b>".format(list_for_hist))
+figure.update_layout(title="<b> Experience level Salary</b>".format(list_for_hist))
 
 #embed for streamlit
 st.plotly_chart(figure)
@@ -71,12 +71,27 @@ based on experience level and work-time status
 """)
 
 #Remote work- based on experience level and full-time, part-time, contractor, or freelance work
-#ist_for_scatter = ['salary_in_usd']
+#list_for_scatter = ['salary_in_usd']
 #choice_for_scatter = st.selectbox('Remote work dependency', list_for_scatter)
-figure2 = px.scatter(df, x='salary_in_usd', hover_data=['employment_type'])
 
+
+figure2 = px.scatter(df, x='salary_in_usd')
+
+def function(df):
+    x_label = st.selectbox('Choose X-Axis Value', options=df['salary_in_usd'])
+    y_label = st.selectbox('Choose Y-Axis Value', options=df['company_size'])
+
+    figure2 = px.scatter(df, x=x_label, y=y_label)
+
+    figure2.update_layout(
+    title="<br> Salary depiction</b>")
+    st.plotly_chart(figure2)
+
+#hover_data=['employment_type']
+
+    
 figure2.update_layout(
-title="<br> Salary depiction: {}</b>")
+title="<br> Salary depiction: {figure2}</b>")
 st.plotly_chart(figure2)
 
 figure2.show()
