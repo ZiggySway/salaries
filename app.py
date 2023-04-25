@@ -56,7 +56,7 @@ figure = px.histogram(df, x= 'salary_in_usd', color='experience_level', color_di
                                                                                           'Executive':'yellow'})
 
 #add title
-figure.update_layout(title="<b> Split of payment by {}</b>".format(choice_for_hist))
+figure.update_layout(title="<b> Split of payment by {}</b>".format(list_for_hist))
 
 #embed for streamlit
 st.plotly_chart(figure)
