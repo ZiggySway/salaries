@@ -93,13 +93,13 @@ if check_s:
 #filtered_scat_data = df[df['job_title'] == job_title]
 
 # Create scatter plot with Plotly Express
-scatter1 = px.scatter(df_s, x=check_s, y='salary_in_usd')
+#scatter1 = px.scatter(df_s, x=check_s, y='salary_in_usd')
 
 #scatter1 = px.scatter(filtered_scat_data, x=job_title_counts.index, y='salary_in_usd')
-scatter1.update_layout(title="<b>Expected salary for {}</b>".format("company_size"))
+#scatter1.update_layout(title="<b>Expected salary for {}</b>".format("company_size"))
 
 # Embed in Streamlit
-st.plotly_chart(scatter1)
+#st.plotly_chart(scatter1)
 
 
 
