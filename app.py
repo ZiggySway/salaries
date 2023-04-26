@@ -93,6 +93,29 @@ st.plotly_chart(figure2)
 
 
 
+
+
+
+
+job_title = st.selectbox('Select job title', sorted(df['job_title'].value_counts()))
+
+# Filter data by selected job title
+
+filtered_scat_data = df[df['job_title'] == job_title]
+
+
+
+# Get the number of people in each job title
+job_title_counts = filtered_scat_data.groupby('job_title')['salary_in_usd'].sum()
+
+# Create scatter plot with Plotly Express
+scatter1 = px.scatter(filtered_scat_data, x=job_title_counts.index, y='salary_in_usd')
+scatter1.update_layout(title="<b>Expected salary for {}</b>".format(job_title))
+
+# Embed in Streamlit
+st.plotly_chart(scatter1)
+
+
 st.write("""
 This project shows the historical collected data of salary and details of data scientist worker.  
 This helps users to understand their potential salaries if they are to work in the field.  
