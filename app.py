@@ -69,51 +69,39 @@ st.write( """
 #### Now let's find out Salary in comparison to company size, based on experience level and work-time status
 """)
 
-
-option = st.selectbox(
-    'Choose company size : (S)Small, (M)Medium, (L)Large',
-    ('S', 'M', 'L'))
-
-figure2 = px.scatter(df['salary_in_usd'], x='company_size',y='salary_in_usd')
-
-figure2.update_layout(
-title="<br> Salary depiction: {}</b>")
-st.plotly_chart(figure2)
+#will create SCATTER
 
 
+combine_df = df.groupby('company_size')['salary_in_usd'].sum().reset_index()
+combine_df
 
 
-st.write(figure2, option)
+#let users decide whether they want to see the odometer or not using a checkbox
+check_s = st.checkbox('Choose_S_Small')
+if check_s:
+    df_s = (combine_df['company_size'] == "S")
+    scatter1 = px.scatter(df_s, y='salary_in_usd')
+    scatter1.update_layout(title="<b>Expected salary for {}</b>".format("company_size"))
+    st.plotly_chart(scatter1)
 
 
-figure2.update_layout(
-title="<br> Salary depiction based on factors</b>")
-st.plotly_chart(figure2)
-
-
-
-
-
-
-
-
-job_title = st.selectbox('Select job title', sorted(df['job_title'].value_counts()))
-
-# Filter data by selected job title
-
-filtered_scat_data = df[df['job_title'] == job_title]
-
+    
 
 
 # Get the number of people in each job title
-job_title_counts = filtered_scat_data.groupby('job_title')['salary_in_usd'].sum()
+#job_title_counts = filtered_scat_data.groupby('job_title').unique()
+#filtered_scat_data = df[df['job_title'] == job_title]
 
 # Create scatter plot with Plotly Express
-scatter1 = px.scatter(filtered_scat_data, x=job_title_counts.index, y='salary_in_usd')
-scatter1.update_layout(title="<b>Expected salary for {}</b>".format(job_title))
+scatter1 = px.scatter(df_s, x=check_s, y='salary_in_usd')
+
+#scatter1 = px.scatter(filtered_scat_data, x=job_title_counts.index, y='salary_in_usd')
+scatter1.update_layout(title="<b>Expected salary for {}</b>".format("company_size"))
 
 # Embed in Streamlit
 st.plotly_chart(scatter1)
+
+
 
 
 st.write("""
