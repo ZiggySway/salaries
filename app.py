@@ -76,22 +76,21 @@ st.write( """
 check_l = "Choose"
 
 
+
 if check_l:
-   st.checkbox('(L) Large companies', True)
-   df_select_l = df.query("company_size == 'L'")
-   figure3 = px.scatter(df_select_l, y='salary_in_usd', labels= {'index':'Individual surveyors who work at different size companies'}, hover_data=None)
-   st.plotly_chart(figure3)
-elif:
-    st.checkbox('(M) Medium companies', True)
+    st.checkbox('(L) Large companies', True)
+    df_select_l = df.query("company_size == 'L'")
+    figure3 = px.scatter(df_select_l, y='salary_in_usd', labels= {'index':'Individual surveyors who work at different size companies'}, hover_data=None)
+    st.plotly_chart(figure3)
+elif st.checkbox('(M) Medium companies', True):
     df_select_m = df.query("company_size == 'M'")
     figure4 = px.scatter(df_select_m, y='salary_in_usd', labels= {'index':'Individual surveyors who work at different size companies'}, hover_data=None)
     st.plotly_chart(figure4)
-elif:
-    st.checkbox('(S) Small companies', True)
+elif st.checkbox('(S) Small companies', True):
     df_select_s = df.query("company_size == 'S'")
     figure5 = px.scatter(df_select_s, y='salary_in_usd', labels= {'index':'Individual surveyors who work at different size companies'}, hover_data=None)
     st.plotly_chart(figure5)
-
+    
 
 
 st.write("""
