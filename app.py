@@ -56,7 +56,7 @@ figure.update_layout(title="<b> Experience level Salary</b>".format(list_for_his
 
 #embed for streamlit
 st.plotly_chart(figure)
-figure.show()
+
 
 
 # new dataframe
@@ -67,33 +67,35 @@ combine_df
 # scatter plot 
 
 st.write( """
-#### Now let's find out Salary in comparison to company size, based on experience level and work-time status
+#### Now let's find out Salary for Data Scientists only in comparison to company size!
 """)
 
 #will create SCATTER
 
+st.write( "We will look at the surveyed salary of Data Scientist now.")
 
-check_l = "Choose"
+## New DataFrame filtered for only data scientist job_titles.
+ds_combine_df = df[df['job_title'] == "Data Scientist"].reset_index(drop=True)
+ds_combine_df
 
+st.write("*You can uncheck the box to see the next level of salaries for company size salaries for data scientists.")
 
-
-if check_l:
-    st.checkbox('(L) Large companies', True)
-    df_select_l = df.query("company_size == 'L'")
-    figure3 = px.scatter(df_select_l, y='salary_in_usd', labels= {'index':'Individual surveyors who work at different size companies'}, hover_data=None)
+if  st.checkbox('(L) Large companies', True):
+    df_select_l = ds_combine_df[ds_combine_df['company_size'] == "L"]
+    figure3 = px.scatter(df_select_l, x='salary_in_usd', labels= {'index':'Individual surveyors'}, hover_data=['experience_level','employment_type','company_size'])
     st.plotly_chart(figure3)
 elif st.checkbox('(M) Medium companies', True):
-    df_select_m = df.query("company_size == 'M'")
-    figure4 = px.scatter(df_select_m, y='salary_in_usd', labels= {'index':'Individual surveyors who work at different size companies'}, hover_data=None)
+    df_select_m = ds_combine_df[ds_combine_df['company_size'] == "M"]
+    figure4 = px.scatter(df_select_m, x='salary_in_usd', labels= {'index':'Individual surveyors'}, hover_data=['experience_level','employment_type','company_size'])
     st.plotly_chart(figure4)
 elif st.checkbox('(S) Small companies', True):
-    df_select_s = df.query("company_size == 'S'")
-    figure5 = px.scatter(df_select_s, y='salary_in_usd', labels= {'index':'Individual surveyors who work at different size companies'}, hover_data=None)
+    df_select_s = ds_combine_df[ds_combine_df['company_size'] == "S"]
+    figure5 = px.scatter(df_select_s, x='salary_in_usd', labels= {'index':'Individual surveyors'}, hover_data=['experience_level','employment_type','company_size'])
     st.plotly_chart(figure5)
     
 
 
 st.write("""
-This project shows the historical collected data of salary and details of data scientist worker.  
+This project shows the historical collected data of salary and details of data scientist workers, and similiar field work.  
 This helps users to understand their potential salaries if they are to work in the field.  
 """)
