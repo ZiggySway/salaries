@@ -28,15 +28,14 @@ df = df.drop_duplicates()
 # ---- Header ----
 
 with st.container():
-    st.header("Let's Determine Data Scientist Salaries!")
+    st.header("Let's Determine Data Science field Salaries!")
     st.subheader("I am Brandi, an aspiring Data Scientist.")
     st.write("This website shows that Data Scientists at all levels can make a difference, and make a good living!")
 
 st.dataframe(df)
 
 
-st.write( """
-#### Now let's find out Salary in comparison to company size, based on experience level and work-time status
+st.subheader( """Now let's find out Salary in comparison to company size, based on experience level and work-time status
 """)
 
 
@@ -44,10 +43,7 @@ st.write( """
 
 list_for_hist = ['Entry_Junior', 'Mid_level', 'Senior', 'Executive']
 
-#create select box- interactive
-#choice_for_hist = st.selectbox('Choose experience level', list_for_hist)
-
-st.write("### Click on the experience level boxes in the legend, to turn off/on the experience levels for salaries. ###")
+st.write("Click on the experience level boxes in the legend, to turn off or on the experience levels for salaries.")
 
 #plotly histogram, where price is determined by choice in box
 figure = px.histogram(df, x= 'salary_in_usd', color='experience_level', color_discrete_map={'Entry_Junior':'red', 
@@ -76,14 +72,25 @@ st.write( """
 
 #will create SCATTER
 
-check_l = st.checkbox('Choose (L) Large companies')
-while check_l == ('Choose (L) Large companies'):
-    df_select = df.query("company_size == 'L'")
-    figure3 = px.scatter(df_select, y= 'salary_in_usd', labels= {'index':'Surveyors who work at large company'}, hover_data=None)
-    st.plotly_chart(figure3)
-    
+
+check_l = "Choose"
 
 
+if check_l:
+   st.checkbox('(L) Large companies', True)
+   df_select_l = df.query("company_size == 'L'")
+   figure3 = px.scatter(df_select_l, y='salary_in_usd', labels= {'index':'Individual surveyors who work at different size companies'}, hover_data=None)
+   st.plotly_chart(figure3)
+elif:
+    st.checkbox('(M) Medium companies', True)
+    df_select_m = df.query("company_size == 'M'")
+    figure4 = px.scatter(df_select_m, y='salary_in_usd', labels= {'index':'Individual surveyors who work at different size companies'}, hover_data=None)
+    st.plotly_chart(figure4)
+elif:
+    st.checkbox('(S) Small companies', True)
+    df_select_s = df.query("company_size == 'S'")
+    figure5 = px.scatter(df_select_s, y='salary_in_usd', labels= {'index':'Individual surveyors who work at different size companies'}, hover_data=None)
+    st.plotly_chart(figure5)
 
 
 
