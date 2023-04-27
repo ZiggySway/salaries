@@ -25,9 +25,6 @@ df = df.drop_duplicates()
 
 # ---- Streamlit Material ----
 
-# title at top of tab
-#st.set_page_config(page_title="Data Science Salaries", layout='wide')
-
 # ---- Header ----
 
 with st.container():
@@ -38,6 +35,9 @@ with st.container():
 st.dataframe(df)
 
 
+st.write( """
+#### Now let's find out Salary in comparison to company size, based on experience level and work-time status
+""")
 
 
 #will create histogram based on: experience level and salary
@@ -63,6 +63,11 @@ st.plotly_chart(figure)
 figure.show()
 
 
+# new dataframe
+
+combine_df = df.groupby('company_size')['salary_in_usd'].sum().reset_index()
+combine_df
+
 # scatter plot 
 
 st.write( """
@@ -72,18 +77,14 @@ st.write( """
 #will create SCATTER
 
 
-combine_df = df.groupby('company_size')['salary_in_usd'].sum().reset_index()
-combine_df
+
+df_selected = combine_df.query("company_size == 'L'")
+figure2 = px.scatter(df_selected, x= 'salary_in_usd', y='company_size')
 
 
-#let users decide whether they want to see the odometer or not using a checkbox
-check_s = st.checkbox('Choose_S_Small')
-if check_s:
-    df_s = (combine_df['company_size'] == "S")
-    scatter1 = px.scatter(df_s, y='salary_in_usd')
-    scatter1.update_layout(title="<b>Expected salary for {}</b>".format("company_size"))
-    st.plotly_chart(scatter1)
-
+df_select = df.query("company_size == 'L'")
+figure3 = px.scatter(df_selected, x= 'salary_in_usd', y='company_size')
+figure3.show()
 
     
 
