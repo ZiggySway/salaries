@@ -78,13 +78,11 @@ st.write( """
 
 
 
-df_selected = combine_df.query("company_size == 'L'")
-figure2 = px.scatter(df_selected, x= 'salary_in_usd', y='company_size')
-
-
 df_select = df.query("company_size == 'L'")
-figure3 = px.scatter(df_selected, x= 'salary_in_usd', y='company_size')
+figure3 = px.scatter(df_select, y= 'salary_in_usd', labels= {'index':'Surveyors who work at large company'}, hover_data=None)
 figure3.show()
+
+
 
     
 
