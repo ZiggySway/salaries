@@ -76,29 +76,13 @@ st.write( """
 
 #will create SCATTER
 
-
-
-df_select = df.query("company_size == 'L'")
-figure3 = px.scatter(df_select, y= 'salary_in_usd', labels= {'index':'Surveyors who work at large company'}, hover_data=None)
-figure3.show()
-
-
-
+check_l = st.checkbox('Choose (L) Large companies')
+while check_l == ('Choose (L) Large companies'):
+    df_select = df.query("company_size == 'L'")
+    figure3 = px.scatter(df_select, y= 'salary_in_usd', labels= {'index':'Surveyors who work at large company'}, hover_data=None)
+    st.plotly_chart(figure3)
     
 
-
-# Get the number of people in each job title
-#job_title_counts = filtered_scat_data.groupby('job_title').unique()
-#filtered_scat_data = df[df['job_title'] == job_title]
-
-# Create scatter plot with Plotly Express
-#scatter1 = px.scatter(df_s, x=check_s, y='salary_in_usd')
-
-#scatter1 = px.scatter(filtered_scat_data, x=job_title_counts.index, y='salary_in_usd')
-#scatter1.update_layout(title="<b>Expected salary for {}</b>".format("company_size"))
-
-# Embed in Streamlit
-#st.plotly_chart(scatter1)
 
 
 
